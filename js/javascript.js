@@ -1,6 +1,6 @@
-function creaTabella(n1, n2){
-    
+function creaTabella(n1){
 
+    
 
     var x = document.createElement("TABLE");
     x.setAttribute("id", "myTable");
@@ -8,6 +8,7 @@ function creaTabella(n1, n2){
     
     x.style.border = "1px solid";
     x.style.borderCollapse="collapse";
+    x.width="100%";
     
     
 
@@ -16,15 +17,26 @@ function creaTabella(n1, n2){
 
         var y = document.createElement("TR");
         y.setAttribute("id", "myTr"+i);
+        
         document.getElementById("myTable").appendChild(y);
         var t=document.createTextNode("");
         y.appendChild(t);
         
-
-        for(j=0; j<n2; j++){
+        
+        for(j=0; j<n1; j++){
             
             var z = document.createElement("TD");
-            var t = document.createTextNode(" ");   //esto sulle caselle
+            var t = document.createTextNode("");   //testo sulle caselle  
+           
+            
+            //assegno id + onclick
+            z.setAttribute("id", "myTd"+j);
+            z.setAttribute("onclick", "clickcella(id);")
+            //z.addEventListener("click", clickcella();
+            //let idcella=document.getElementById("myTd"+j);
+
+            
+            
             z.style.border="1px solid";
             z.style.height="20px";
             z.style.width="20px";
@@ -35,4 +47,11 @@ function creaTabella(n1, n2){
         }
         
     }
+}
+
+function clickcella(id){
+    cella=document.getElementById(id);
+    cella.style.backgroundColor='black';
+    
+    
 }
