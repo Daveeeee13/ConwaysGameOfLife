@@ -1,6 +1,26 @@
-function creaTabella(n1){
+function creaForm(){
+    //creo la base del form
+    var f=document.createElement("form");
+    f.setAttribute("id", "formLifeGame");
+    
+    //creo campo inserimento dato
+    var input=document.createElement("input");
+    input.setAttribute("id", "ncelle");
+    input.setAttribute("type", "number");
+    input.setAttribute("placeholder", "Inserisci il n di celle");
 
     
+    
+    document.body.appendChild(f);
+    f.appendChild(input);
+    
+    
+}
+
+
+function creaTabella(n1){
+
+    var numerodicelle=document.getElementById("ncelle").value;
 
     var x = document.createElement("TABLE");
     x.setAttribute("id", "myTable");
@@ -12,7 +32,7 @@ function creaTabella(n1){
     
     
 
-    for(i=0; i<n1; i++){
+    for(i=0; i<numerodicelle; i++){
 
 
         var y = document.createElement("TR");
@@ -23,24 +43,19 @@ function creaTabella(n1){
         y.appendChild(t);
         
         
-        for(j=0; j<n1; j++){
+        for(j=0; j<numerodicelle; j++){
             
             var z = document.createElement("TD");
             var t = document.createTextNode("");   //testo sulle caselle  
            
-            
             //assegno id + onclick
             z.setAttribute("id", "myTd"+j);
-            z.setAttribute("onclick", "clickcella(id);")
-            //z.addEventListener("click", clickcella();
-            //let idcella=document.getElementById("myTd"+j);
+            z.setAttribute("onclick", "clickcella(this);")
 
-            
-            
             z.style.border="1px solid";
             z.style.height="20px";
             z.style.width="20px";
-            
+                        
             z.appendChild(t);
             document.getElementById("myTr"+i).appendChild(z);
             
@@ -49,9 +64,8 @@ function creaTabella(n1){
     }
 }
 
-function clickcella(id){
-    cella=document.getElementById(id);
-    cella.style.backgroundColor='black';
+function clickcella(td){
+    td.style.backgroundColor='black';
     
     
 }
