@@ -9,11 +9,18 @@ function creaForm(){
     input.setAttribute("type", "number");
     input.setAttribute("placeholder", "Inserisci il n di celle");
 
+    //bottone invio
+
+    var bottoneinvio=document.createElement("input");
+    bottoneinvio.setAttribute("type", "submit");
+    bottoneinvio.setAttribute("onclick", "creaTabella()");
+    
+    
     
     
     document.body.appendChild(f);
     f.appendChild(input);
-    
+    document.body.appendChild(bottoneinvio);
     
 }
 
@@ -21,6 +28,9 @@ function creaForm(){
 function creaTabella(n1){
 
     var numerodicelle=document.getElementById("ncelle").value;
+    if(numerodicelle<20 || numerodicelle>100){
+        numerodicelle=0;
+    }
 
     var x = document.createElement("TABLE");
     x.setAttribute("id", "myTable");
