@@ -1,3 +1,5 @@
+var x; //rendo globale tabella
+
 function creaForm(){
     //creo la base del form
     var f=document.createElement("form");
@@ -14,6 +16,10 @@ function creaForm(){
     var bottoneinvio=document.createElement("input");
     bottoneinvio.setAttribute("type", "submit");
     bottoneinvio.setAttribute("onclick", "creaTabella()");
+
+    var bottonegioca=document.createElement("button");
+    bottonegioca.setAttribute("id", "Gioca");
+    bottonegioca.setAttribute("onclick", "gioca()");
     
     
     
@@ -21,6 +27,7 @@ function creaForm(){
     document.body.appendChild(f);
     f.appendChild(input);
     document.body.appendChild(bottoneinvio);
+    document.body.appendChild(bottonegioca);
     
 }
 
@@ -32,7 +39,7 @@ function creaTabella(n1){
         numerodicelle=0;
     }
 
-    var x = document.createElement("TABLE");
+    x = document.createElement("TABLE");
     x.setAttribute("id", "myTable");
     document.body.appendChild(x);
     
@@ -65,6 +72,7 @@ function creaTabella(n1){
             z.style.border="1px solid";
             z.style.height="20px";
             z.style.width="20px";
+            z.style.backgroundColor='white';
                         
             z.appendChild(t);
             document.getElementById("myTr"+i).appendChild(z);
@@ -75,7 +83,22 @@ function creaTabella(n1){
 }
 
 function clickcella(td){
-    td.style.backgroundColor='black';
-    
-    
+
+    if(td.style.backgroundColor=='white'){
+        td.style.backgroundColor='black';
+    }else td.style.backgroundColor='white';   
 }
+
+function crea_modello(){
+ 
+    var m=[];    //matrice si dichiara così perché viene vista come un array che contiene gli array delle righe
+    
+
+}
+
+function gioca(){
+
+    crea_modello();
+
+}
+
