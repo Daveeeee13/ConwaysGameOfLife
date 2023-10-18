@@ -1,4 +1,6 @@
-var x; //rendo globale tabella
+var x; //rendo globale tabella; prima era dentro alla funzione creatabella
+var numerodicelle;
+var m=[]; //dichiarazione globale matrice
 
 function creaForm(){
     //creo la base del form
@@ -22,8 +24,7 @@ function creaForm(){
     bottonegioca.setAttribute("onclick", "gioca()");
     
     
-    
-    
+    //appendo tutto sulla pagina
     document.body.appendChild(f);
     f.appendChild(input);
     document.body.appendChild(bottoneinvio);
@@ -34,7 +35,7 @@ function creaForm(){
 
 function creaTabella(n1){
 
-    var numerodicelle=document.getElementById("ncelle").value;
+    numerodicelle=document.getElementById("ncelle").value;
     if(numerodicelle<20 || numerodicelle>100){
         numerodicelle=0;
     }
@@ -80,6 +81,8 @@ function creaTabella(n1){
         }
         
     }
+
+    
 }
 
 function clickcella(td){
@@ -89,16 +92,55 @@ function clickcella(td){
     }else td.style.backgroundColor='white';   
 }
 
-function crea_modello(){
+function crea_matrice(){
  
-    var m=[];    //matrice si dichiara così perché viene vista come un array che contiene gli array delle righe
-    
+    m=[];    //matrice si dichiara così perché viene vista come un array che contiene gli array delle righe
+
+    for(i=0; i<numerodicelle; i++){
+        for(j=0; j<numerodicelle; j++){
+            if(x.rows[i].cells[j].style.backgroundColor=='black'){
+                m[i][j]=1;                  //1 è come dire true se avessi un booleano
+            }else m[i][j]=0;
+        }
+    }
 
 }
 
+function inizializza_matrice(){
+
+    for(i=0; i<numerodicelle; i++){
+        for(j=0; j<numerodicelle; j++){
+            m[i][j]=0;
+        }
+    }
+
+}
+
+function azzera_matrice(){
+
+    for(i=0; i<numerodicelle; i++){
+        for(j=0; j<numerodicelle; j++){
+            console.log("m["+i+","+j+"] ="+m[i][j]);
+        }
+    }
+
+}
+
+function stampa_matrice(){
+
+    for(i=0; i<numerodicelle; i++){
+        for(j=0; j<numerodicelle; j++){
+            console.log("m["+i+","+j+"] ="+m[i][j]);
+        }
+    }
+
+}
+
+
+
 function gioca(){
 
-    crea_modello();
-
+    crea_matrice();
+    inizializza_matrice() //test matrice
 }
 
