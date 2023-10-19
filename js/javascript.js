@@ -11,7 +11,9 @@ function creaForm(){
     var input=document.createElement("input");
     input.setAttribute("id", "ncelle");
     input.setAttribute("type", "number");
-    input.setAttribute("placeholder", "Inserisci il n di celle");
+    input.setAttribute("min", "20");
+    input.setAttribute("max", "100");
+    input.setAttribute("placeholder", "N.celle");
 
     //bottone invio
 
@@ -48,7 +50,7 @@ function creaTabella(n1){
     x.style.borderCollapse="collapse";
     x.width="100%";
     
-    
+
 
     for(i=0; i<numerodicelle; i++){
 
@@ -94,13 +96,12 @@ function clickcella(td){
 
 function crea_matrice(){
  
-    m=[];    //matrice si dichiara così perché viene vista come un array che contiene gli array delle righe
+    //m=[];    matrice si dichiara così perché viene vista come un array che contiene gli array delle righe
 
     for(i=0; i<numerodicelle; i++){
         for(j=0; j<numerodicelle; j++){
-            if(x.rows[i].cells[j].style.backgroundColor=='black'){
-                m[i][j]=1;                  //1 è come dire true se avessi un booleano
-            }else m[i][j]=0;
+            if(x.rows[i].cells[j].style.backgroundColor=='black')
+                m[i][j]=1;                  //1 è come dire true se avessi un booleano true
         }
     }
 
@@ -109,9 +110,11 @@ function crea_matrice(){
 function inizializza_matrice(){
 
     for(i=0; i<numerodicelle; i++){
+        var r=[];                       //ciclo per le righe
         for(j=0; j<numerodicelle; j++){
-            m[i][j]=0;
+            r[j]=0;                     //ciclo per riempire la riga
         }
+        m[i]=r;
     }
 
 }
@@ -140,7 +143,10 @@ function stampa_matrice(){
 
 function gioca(){
 
-    crea_matrice();
+   
     inizializza_matrice() //test matrice
+    crea_matrice();
+
+    stampa_matrice();
 }
 
