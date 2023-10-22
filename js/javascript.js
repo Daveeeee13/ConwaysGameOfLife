@@ -17,13 +17,15 @@ function creaForm(){
 
     //bottone invio
 
-    var bottoneinvio=document.createElement("input");
-    bottoneinvio.setAttribute("type", "submit");
+    var bottoneinvio=document.createElement("button");
+    bottoneinvio.setAttribute("id", "invio");
     bottoneinvio.setAttribute("onclick", "creaTabella()");
+    bottoneinvio.innerHTML = "Invio";
 
     var bottonegioca=document.createElement("button");
     bottonegioca.setAttribute("id", "Gioca");
     bottonegioca.setAttribute("onclick", "gioca()");
+    bottonegioca.innerHTML = "Gioca";
     
     
     //appendo tutto sulla pagina
