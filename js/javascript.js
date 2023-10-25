@@ -104,14 +104,16 @@ function clickcella(td){
     }else td.style.backgroundColor='white';   
 }
 
-function crea_matrice(){
+function aggiorna_matrice(){
  
     //m=[];    matrice si dichiara così perché viene vista come un array che contiene gli array delle righe
 
     for(i=0; i<numerodicelle; i++){
         for(j=0; j<numerodicelle; j++){
-            if(x.rows[i].cells[j].style.backgroundColor=='black')
+            if(x.rows[i].cells[j].style.backgroundColor=='black'){
                 m[i][j]=1;                  //1 è come dire true se avessi un booleano true
+            }else m[i][j]=0;
+                
         }
     }
 
@@ -140,45 +142,87 @@ function azzera_matrice(){
 }
 
 function stampa_matrice(){
-
+    var str="";
     for(i=0; i<numerodicelle; i++){
         for(j=0; j<numerodicelle; j++){
-            console.log("m["+i+","+j+"] ="+m[i][j]);
+            //console.log("m["+i+","+j+"] ="+m[i][j]);
+            str=str+m[i][j]+" ";
         }
+        str=str+"\n";
+        console.log(str);
     }
 
 }
 
-function verifica_cella(r, c){
-    var cont=0;
-    for(i=r-1; i<=r+1; i++){
-        for(j=c-1; j<=c+1; j++){
-            if (!(i==r && j==c)&&(i<0)&&(j<0)&&(j>=numerodicelle)&&(i>=numerodicelle)){
-                if(m[i][j]==1){ //conto solo se la cella è viva
+function verifica_cella(r,c) {
+	var cont=0;
+//	for(var i = r-1;i <= r+1;r++){ ERRORE!
+	for(var i = r-1;i <= r+1; i++){
+		for(var j = c-1;j <= c+1;j++){
+			if (!((i==r && j==c) || i<0 || j<0 || j>=numerodicelle || i>=numerodicelle)){
+				if(m[i][j]==1)
+					cont++;
+			}	
+		}
+	}	
+	return cont;
+}
+
+function verifica_cella2(r, c)
+{
+    var cont = 0;
+    for (var i = r - 1; i <= r + 1; i++)
+        for (var j = c - 1; j <= c + 1; j++)
+            if (!( (i == r && j == c) || i < 0 || j < 0 || i >= numerodicelle || j >= numerodicelle ))
+                if ( m[i][j] == 1)
                     cont++;
-                }
-            }
-        }
-    }
     return cont;
-    
 }
 
-function controlla_matrice(){
+function controlla_matrice(){    
+    var conteggio;
+
+    aggiorna_matrice();
+
     for(i=0; i<numerodicelle; i++){
         for(j=0; j<numerodicelle; j++){
             conteggio=verifica_cella(i, j);
             console.log("m["+i+","+j+"] = "+conteggio);
+            if(m[i][j]==1 && conteggio<2){
+                //m[i][j]=0;
+                x.rows[i].cells[j].style.backgroundColor="white";
+            }else if(m[i][j]==1 && conteggio>3){
+                //m[i][j]=0;
+                x.rows[i].cells[j].style.backgroundColor="white";
+            }else if(m[i][j]==0 && conteggio==3){
+                //m[i][j]=1;
+                x.rows[i].cells[j].style.backgroundColor="black";
+            }
         }
     }
+    stampa_matrice();
 }
 
-function gioca(){
+/*function gioca(){
 
    
-    inizializza_matrice() //test matrice
-    crea_matrice();
-    controlla_matrice();
-    stampa_matrice();
-    //verifica_cella();
+    inizializza_matrice();
+	
+	for (var i = 0; i <= 10; i++) {
+		aggiorna_matrice();
+		// Applico le regole di Life
+		controlla_matrice();
+		stampa_matrice();
+	}
+
+}*/
+
+function gioca(){
+    inizializza_matrice();
+        
+        setInterval("controlla_matrice()", 1000);
+    
+    
+        
+
 }
